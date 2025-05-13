@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "ffmpeg-webp"
+exit 0

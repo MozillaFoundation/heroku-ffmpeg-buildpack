@@ -1,0 +1,37 @@
+name: Validate FFmpeg tarball URL
+
+on:
+  push:
+    paths:
+      - 'bin/compile'
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check-tarball:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Extract FFMPEG_VERSION from bin/compile
+        id: extract
+        run: |
+          version=$(grep -oE 'FFMPEG_VERSION=\$\{FFMPEG_VERSION:-\".*\"\}' bin/compile | sed -E 's/.*:-\"(.*)\".*/\1/')
+          echo "Extracted version: $version"
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Validate tarball URL
+        run: |
+          VERSION="${{ steps.extract.outputs.version }}"
+          TAG_VERSION=$(echo "$VERSION" | tr '+' '-')
+          URL="https://github.com/MozillaFoundation/heroku-ffmpeg-static-builds/releases/download/v${TAG_VERSION}/ffmpeg-${VERSION}-webp.tar.xz"
+
+          echo "Checking: $URL"
+          if curl -fsI "$URL" >/dev/null; then
+            echo "Tarball URL is valid."
+          else
+            echo "ERROR: Tarball not found at $URL"
+            exit 1
+          fi
