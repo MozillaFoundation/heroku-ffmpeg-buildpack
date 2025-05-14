@@ -26,7 +26,7 @@ jobs:
         run: |
           VERSION="${{ steps.extract.outputs.version }}"
           TAG_VERSION=$(echo "$VERSION" | tr '+' '-')
-          URL="https://github.com/MozillaFoundation/heroku-ffmpeg-static-builds/releases/download/v${TAG_VERSION}/ffmpeg-${VERSION}-webp.tar.xz"
+          URL="https://github.com/MozillaFoundation/heroku-ffmpeg-static-builds/releases/download/v${TAG_VERSION}/ffmpeg-${VERSION}.tar.xz"
 
           echo "Checking: $URL"
           if curl -fsI "$URL" >/dev/null; then
