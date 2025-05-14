@@ -7,7 +7,7 @@ TARBALL_URL="https://github.com/MozillaFoundation/heroku-ffmpeg-static-builds/re
 
 echo "Installing FFmpeg $FFMPEG_VERSION..."
 mkdir -p "$BUILD_DIR"
-curl -sSL "$TARBALL_URL" | tar -xJ -C "$BUILD_DIR"
+curl -sSL "$TARBALL_URL" | tar --strip-components=1 -xJ -C "$BUILD_DIR"
 chmod +x "$BUILD_DIR/bin/ffmpeg" "$BUILD_DIR/bin/ffprobe"
 
 echo "FFmpeg installed at $BUILD_DIR/bin"
