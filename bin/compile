@@ -2,9 +2,8 @@
 set -e
 
 BUILD_DIR=$1
-FFMPEG_VERSION=${FFMPEG_VERSION:-"5.1.6-0+deb12u1"}
-TAG_VERSION=$(echo "$FFMPEG_VERSION" | tr '+' '-')
-TARBALL_URL="https://github.com/MozillaFoundation/heroku-ffmpeg-static-builds/releases/download/v${TAG_VERSION}/ffmpeg-${FFMPEG_VERSION}-webp.tar.xz"
+FFMPEG_VERSION=${FFMPEG_VERSION:-"n5.1.6"}
+TARBALL_URL="https://github.com/MozillaFoundation/heroku-ffmpeg-static-builds/releases/download/v${FFMPEG_VERSION}/ffmpeg-${FFMPEG_VERSION}-webp.tar.xz"
 
 echo "Installing FFmpeg $FFMPEG_VERSION..."
 mkdir -p "$BUILD_DIR/bin"
