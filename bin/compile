@@ -2,7 +2,7 @@
 set -e
 
 BUILD_DIR=$1
-FFMPEG_VERSION=${FFMPEG_VERSION:-"n6.1.2-31-gf120f66838-linux64-gpl-6.1"}
+FFMPEG_VERSION=${FFMPEG_VERSION:-"n6.1.2-static"}
 TARBALL_URL="https://github.com/MozillaFoundation/heroku-ffmpeg-static-builds/releases/download/v${FFMPEG_VERSION}/ffmpeg-${FFMPEG_VERSION}.tar.xz"
 
 echo "Installing FFmpeg $FFMPEG_VERSION..."
